@@ -1,0 +1,25 @@
+// Color Variables
+$background-color: #E5E5E5;
+$title-color: #3A3A3A;
+$text-color: #A8A8B3;
+$button-color: #04D361;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font: 16px "Roboto", Arial, sans-serif;
+  color: #121214;
+  background-color: $background-color;
+  background-image: url(../assets/github.svg);
+  background-repeat: no-repeat;
+  background-position: left 64% top -40px;
+  margin: 0 auto;
+}
+
+.container {
+  width: 70vw;
+}
