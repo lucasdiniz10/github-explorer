@@ -6,10 +6,10 @@ export function Header() {
   return (
     <nav>
       <div className="button-container container">
-        <button type="button">
+        <button type="button" className="logo-button">
           <img className="logo" src={logo} alt="Github Explorer" />
         </button>
-        <button type="button"><img className="back-page-button" src={backPageButton} alt="Volta página" /></button>
+        <button type="button" id="back-page-button"><img className="back-page-button-image" src={backPageButton} alt="Volta página" /></button>
       </div>
     </nav>
   );

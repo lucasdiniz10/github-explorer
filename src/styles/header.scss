@@ -5,25 +5,35 @@ nav {
 .button-container {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   max-width: 960px;
   margin: 40px auto auto;
 
   button {
+    position: relative;
     display: flex;
     align-items: center;
     background-color: Transparent;
     background-repeat: no-repeat;
-    border: 1px solid red;
+    border: none;
     cursor: pointer;
     overflow: hidden;
     height: 40px;
-    width: 200px;
+    width: 160px;
 
     .logo {
       width: 150px;
     }
+
+    .back-page-button-image {
+      position: absolute;
+      right: 0px;
+    }
+  }
+
+  #back-page-button {
+    width: 70px;
   }
 }
-
