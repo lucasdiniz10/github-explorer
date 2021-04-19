@@ -1,4 +1,4 @@
-import '../styles/users.scss'
+import '../styles/usersList.scss'
 
 /* interface UserProp {
   name: string;
