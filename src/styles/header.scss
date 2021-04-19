@@ -18,22 +18,24 @@ nav {
     background-color: Transparent;
     background-repeat: no-repeat;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
     overflow: hidden;
+    outline: none;
     height: 40px;
-    width: 160px;
+    padding: 0 10px;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: rgba(216, 216, 216, 0.5);
+    }
 
     .logo {
       width: 150px;
     }
-
-    .back-page-button-image {
-      position: absolute;
-      right: 0px;
-    }
   }
 
-  #back-page-button {
-    width: 70px;
+  .invisible {
+    display: none;
   }
 }

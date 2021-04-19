@@ -2,14 +2,9 @@ import React, { useState } from "react";
 import { Header } from "../components/Header";
 import '../styles/home.scss'
 
-interface User {
-  name: string;
-}
 
 export function Home() {
-  const [users, setUsers] = useState<User[]>([]);
   const [newUserSearch, setNewUserSearch] = useState('');
-
 
   function handleCreateNewUserSearch() {
     if (!newUserSearch) return;
@@ -17,13 +12,6 @@ export function Home() {
     console.log(newUserSearch);
 
     setNewUserSearch('');
-
-    const newUsers = {
-      name: newUserSearch
-    }
-
-    setUsers(oldState => [...oldState, newUsers])
-    console.log(users);
   }
 
   return (

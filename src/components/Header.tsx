@@ -9,7 +9,7 @@ export function Header() {
         <button type="button" className="logo-button">
           <img className="logo" src={logo} alt="Github Explorer" />
         </button>
-        <button type="button" id="back-page-button"><img className="back-page-button-image" src={backPageButton} alt="Volta página" /></button>
+        <button type="button" className="back-page-button invisible"><img className="back-page-button-image" src={backPageButton} alt="Volta página" /></button>
       </div>
     </nav>
   );
