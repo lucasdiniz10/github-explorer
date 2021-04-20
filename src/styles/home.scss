@@ -5,6 +5,54 @@
 
   #home-title{
     color: $title-color;
-    border: 1px solid red;
+    margin-bottom: 2rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    row-gap: 1rem;
+    margin-bottom: 4rem;
+
+    input {
+      padding: 0 5px 0 10px;
+      color: $text-color;
+    }
+    
+    input:focus {
+      outline: 2px solid $button-color;
+      outline-offset: -2px;
+      color: $text-color;
+    }
+
+    input::placeholder {
+      color: $text-color;
+    }
+
+    .form-item {
+      height: 3rem;
+      border: none;
+      border-radius: 5px;
+      overflow: hidden;
+      font-family: 'Roboto';
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    button {
+      color: #fff;
+      background-color: $button-color;
+      outline: none;
+    }
+
+    button:hover {
+      background-color: #02bd56;
+      transition: background-color 0.1s ease;
+    }
+    
+    button:active {
+      background-color: #4144ff;
+    }
   }
 }

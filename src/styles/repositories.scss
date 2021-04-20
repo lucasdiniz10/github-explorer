@@ -10,6 +10,10 @@ section.repository-list {
   }
 
   li {
+    background: #fff;
+    padding: 15px 1.6rem;
+
+
     /*
     & -> referencia o próprio elemento.
     & + li -> Toda `li` que tiver outro `li` antes dela.
