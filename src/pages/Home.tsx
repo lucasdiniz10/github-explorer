@@ -10,7 +10,8 @@ export interface User {
   avatar_url: string,
   name: string,
   repos_url: string,
-}
+};
+
 export interface Repositories {
   id: number;
   name: string,
@@ -23,24 +24,26 @@ export interface Repositories {
   owner: {
     user: User
   }
-}
+};
 
 export function Home() {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<User>({} as User);
   const [newUserSearch, setNewUserSearch] = useState('');
 
   let userUrl = 'https://api.github.com/users/' + newUserSearch;
 
-  function handleCreateNewUserSearch() {
-    if (!newUserSearch) return;
-
-    fetch(userUrl)
+  function getUser(url: string) {
+    fetch(url)
       .then(response => response.json())
       .then(data => setUsers(data))
       .catch(error => console.log(error));
     console.log(newUserSearch);
     console.log(users);
+  }
 
+  function handleCreateNewUserSearch() {
+    if (!newUserSearch) return;
+    getUser(userUrl);
     //setNewUserSearch('');
   }
 
@@ -68,7 +71,11 @@ export function Home() {
           </button>
         </form>
         <div className="repositories-container">
-          <UsersList />
+          <UsersList
+            login={users.login}
+            avatar={users.avatar_url}
+            repos_url={users.repos_url}
+          />
         </div>
       </div>
     </>
