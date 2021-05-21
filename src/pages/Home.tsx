@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { api } from "../services/api";
+
 import { Header } from "../components/Header/index";
 import { RepositoriesSearch } from "../components/RepositoriesSearch/index";
+
 import '../styles/home.scss'
 
 
-export interface User {
+interface User {
   id: number,
   login: string,
   avatar_url: string,
@@ -12,48 +15,47 @@ export interface User {
   repos_url: string,
 }
 
-export interface Repositories {
-  id: number;
+interface Repositories {
+  id: number,
   name: string,
   full_name: string,
   description: string,
   url: string,
   stars: number,
   forks: number,
-  openIssues: number
-  owner: {
-    user: User
-  }
+  openIssues: number,
+  owner: User,
 }
 
 export function Home() {
-  const [users, setUsers] = useState<User>({} as User);
-  const [newUserSearch, setNewUserSearch] = useState('');
+  const [repositories, setRepositories] = useState<Repositories[]>([]);
+  const [newRepositoriesSearch, setNewRepositoriesSearch] = useState('');
 
-  let userUrl = 'https://api.github.com/users/' + newUserSearch;
-
-  function getUser(url: string) {
-    fetch(url)
-      .then(response => response.json())
-      .then(data => setUsers(data))
-      .catch(error => console.log(error));
-    console.log(newUserSearch);
-    console.log(users);
-  }
-
-  function handleCreateNewUserSearch() {
-    if (!newUserSearch) return;
-    getUser(userUrl);
-    //setNewUserSearch('');
-  }
+  // https://api.github.com/search/repositories?q={react}{&page,per_page,sort,order}
 
   useEffect(() => {
-    fetch('https://api.github.com/users/lucasdiniz10')
-      .then(response => response.json())
-      .then(data => setUsers(data))
-      .catch(error => console.log(error));
+    const initialSearch = async () => {
+      const response = await api.get(`repositories?q=react&page=1&per_page=20`);
+
+      const data = response.data.items;
+      setRepositories(data);
+    }
+    initialSearch();
   }, [])
-  console.log(users);
+
+  const handleCreateNewRepositoriesSearch = async (e: any) => {
+    try {
+      e.preventDefault();
+      const response = await api.get(`repositories?q=${newRepositoriesSearch}&page=1&per_page=20`)
+
+      const data = (response.data.items);
+      setRepositories(data);
+      setNewRepositoriesSearch('')
+      console.log(newRepositoriesSearch)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <>
@@ -67,22 +69,20 @@ export function Home() {
             className="form-item"
             type="text"
             placeholder="Digite aqui"
-            onChange={(e) => setNewUserSearch(e.target.value)}
-            value={newUserSearch}
+            onChange={(e) => setNewRepositoriesSearch(e.target.value)}
+            value={newRepositoriesSearch}
           />
           <button
             className="form-item"
-            type="button"
-            onClick={handleCreateNewUserSearch}
+            type="submit"
+            onSubmit={handleCreateNewRepositoriesSearch}
           >
             Pesquisar
           </button>
         </form>
         <div className="repositories-container">
           <RepositoriesSearch
-            login={users.login}
-            avatar={users.avatar_url}
-            repos_url={users.repos_url}
+            repositories={repositories}
           />
         </div>
       </div>

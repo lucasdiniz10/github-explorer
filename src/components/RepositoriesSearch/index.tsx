@@ -1,40 +1,55 @@
 import './styles.scss'
 import goUserPageButton from "../../assets/goUserPageButton.svg"
 
-interface UsersListProps {
-  avatar: string,
-  repos_url: string,
+interface User {
+  id: number,
   login: string,
+  avatar_url: string,
+  name: string,
+  repos_url: string,
 }
 
-export function RepositoriesSearch(props: UsersListProps) {
-  const { login, avatar, repos_url } = props;
+interface Repositories {
+  id: number,
+  name: string,
+  full_name: string,
+  description: string,
+  url: string,
+  stars: number,
+  forks: number,
+  openIssues: number,
+  owner: User,
+}
 
+interface UsersListProps {
+  repositories: Repositories[];
+}
+
+export function RepositoriesSearch({ repositories }: UsersListProps) {
   return (
     <section className="repos-container container">
       <ul>
-        <li>
-          <a href="/">
-            <img src={avatar} alt="Foto perfil" className="profile-photo" />
-          </a>
-          <div className="text-content-container">
-            <strong className="repository-link">
-              <a href={repos_url}>
-                {login}/repos
+        {repositories.map(repository => {
+          return (
+            <li key={repository.id}>
+              <a href={repository.owner.repos_url}>
+                <img src={repository.owner.avatar_url} alt="Foto perfil" className="profile-photo" />
               </a>
-            </strong>
-            <p>Descrição do repo</p>
-          </div>
-          <button type="button" className="go-to-user-page-button">
-            <img
-              src={goUserPageButton}
-              alt="ir para repositórios do usuário"
-            />
-          </button>
-        </li>
-        {/* {repositories.map(repository => {
-          return <RepositoryItem key={repository.name} repository={repository} />
-        })} */}
+              <div className="text-content-container">
+                <a href={repository.owner.repos_url}>
+                  {repository.owner.login}/repos
+                </a>
+                <p>{repository.description}</p>
+              </div>
+              <button type="button" className="go-to-user-page-button">
+                <img
+                  src={goUserPageButton}
+                  alt="ir para repositórios do usuário"
+                />
+              </button>
+            </li>
+          )
+        })}
       </ul>
     </section>
   );
