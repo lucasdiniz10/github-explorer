@@ -1,5 +1,5 @@
-import '../styles/usersList.scss'
-import goUserPageButton from "../assets/goUserPageButton.svg"
+import './styles.scss'
+import goUserPageButton from "../../assets/goUserPageButton.svg"
 
 interface UsersListProps {
   avatar: string,
@@ -15,16 +15,22 @@ export function UsersList(props: UsersListProps) {
       <ul>
         <li>
           <a href="/">
-            <img src={avatar} alt="Foto perfil" />
+            <img src={avatar} alt="Foto perfil" className="profile-photo" />
           </a>
-          <div>
-            <strong>
-              <a href={repos_url}>{login}/repos</a>
+          <div className="text-content-container">
+            <strong className="repository-link">
+              <a href={repos_url}>
+                {login}/repos
+              </a>
             </strong>
             <p>Descrição do repo</p>
           </div>
           <a href="/">
-            <img src={goUserPageButton} alt="ir para repositórios do usuário" />
+            <img
+              src={goUserPageButton}
+              alt="ir para repositórios do usuário"
+              className="go-to-user-page-button"
+            />
           </a>
         </li>
         {/* {repositories.map(repository => {

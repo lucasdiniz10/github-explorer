@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { Header } from "../components/Header";
-import { UsersList } from "../components/UsersList";
+import { useEffect, useState } from "react";
+import { Header } from "../components/Header/index";
+import { UsersList } from "../components/UsersList/index";
 import '../styles/home.scss'
 
 
@@ -46,6 +46,14 @@ export function Home() {
     getUser(userUrl);
     //setNewUserSearch('');
   }
+
+  useEffect(() => {
+    fetch('https://api.github.com/users/lucasdiniz10')
+      .then(response => response.json())
+      .then(data => setUsers(data))
+      .catch(error => console.log(error));
+  }, [])
+  console.log(users);
 
   return (
     <>

@@ -1,6 +1,6 @@
-import logo from "../assets/logo.svg";
-import backPageButton from "../assets/backPageButton.svg";
-import '../styles/header.scss'
+import logo from "../../assets/logo.svg";
+import backPageButton from "../../assets/backPageButton.svg";
+import './styles.scss'
 
 import { Link, useRouteMatch } from "react-router-dom"
 import { useEffect, useState } from "react";

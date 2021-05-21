@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { RepositoryItem } from "./RepositoryItem"
+import { RepositoryItem } from "../RepositoryItem/index"
 
-import '../styles/repositories.scss';
+import './styles.scss';
 
 interface Repository {
   name: string,
@@ -24,7 +24,12 @@ export function RepositoryList() {
 
       <ul>
         {repositories.map(repository => {
-          return <RepositoryItem key={repository.name} repository={repository} />
+          return (
+            <RepositoryItem
+              key={repository.name}
+              repository={repository}
+            />
+          )
         })}
       </ul>
     </section>
