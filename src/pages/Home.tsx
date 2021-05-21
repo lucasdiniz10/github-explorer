@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Header } from "../components/Header/index";
-import { UsersList } from "../components/UsersList/index";
+import { RepositoriesSearch } from "../components/RepositoriesSearch/index";
 import '../styles/home.scss'
 
 
@@ -10,7 +10,7 @@ export interface User {
   avatar_url: string,
   name: string,
   repos_url: string,
-};
+}
 
 export interface Repositories {
   id: number;
@@ -24,7 +24,7 @@ export interface Repositories {
   owner: {
     user: User
   }
-};
+}
 
 export function Home() {
   const [users, setUsers] = useState<User>({} as User);
@@ -79,7 +79,7 @@ export function Home() {
           </button>
         </form>
         <div className="repositories-container">
-          <UsersList
+          <RepositoriesSearch
             login={users.login}
             avatar={users.avatar_url}
             repos_url={users.repos_url}

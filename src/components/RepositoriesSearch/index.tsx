@@ -7,11 +7,11 @@ interface UsersListProps {
   login: string,
 }
 
-export function UsersList(props: UsersListProps) {
+export function RepositoriesSearch(props: UsersListProps) {
   const { login, avatar, repos_url } = props;
 
   return (
-    <section className="users-list-container container">
+    <section className="repos-container container">
       <ul>
         <li>
           <a href="/">
@@ -25,13 +25,12 @@ export function UsersList(props: UsersListProps) {
             </strong>
             <p>Descrição do repo</p>
           </div>
-          <a href="/">
+          <button type="button" className="go-to-user-page-button">
             <img
               src={goUserPageButton}
               alt="ir para repositórios do usuário"
-              className="go-to-user-page-button"
             />
-          </a>
+          </button>
         </li>
         {/* {repositories.map(repository => {
           return <RepositoryItem key={repository.name} repository={repository} />

@@ -1,6 +1,6 @@
 @import "../../styles/global.scss";
 
-.users-list-container {
+.repos-container {
   li {
     display: flex;
     flex-direction: column;
@@ -44,10 +44,17 @@
 
   .go-to-user-page-button {
     height: 50%;
+    border: 0;
     border-radius: 5px;
     transition: background-color 0.1s ease;
-  }
-  .go-to-user-page-button:hover {
-    background-color: $button-color;
+    font-size: 0;
+
+    &:hover {
+      background-color: $button-color;
+    }
+
+    &:active {
+      background-color: $active-button-color;
+    }
   }
 }
