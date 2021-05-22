@@ -37,7 +37,7 @@ export function RepositoriesSearch({ repositories }: UsersListProps) {
               </a>
               <div className="text-content-container">
                 <a href={repository.owner.repos_url}>
-                  {repository.owner.login}/repos
+                  {repository.full_name}
                 </a>
                 <p>{repository.description}</p>
               </div>

@@ -28,34 +28,22 @@ interface Repositories {
 }
 
 export function Home() {
-  const [repositories, setRepositories] = useState<Repositories[]>([]);
   const [newRepositoriesSearch, setNewRepositoriesSearch] = useState('');
 
   // https://api.github.com/search/repositories?q={react}{&page,per_page,sort,order}
 
-  useEffect(() => {
-    const initialSearch = async () => {
-      const response = await api.get(`repositories?q=react&page=1&per_page=20`);
 
-      const data = response.data.items;
-      setRepositories(data);
-    }
-    initialSearch();
-  }, [])
-
-  const handleCreateNewRepositoriesSearch = async (e: any) => {
+  const handleCreateNewRepositoriesSearch = async () => {
     try {
-      e.preventDefault();
       const response = await api.get(`repositories?q=${newRepositoriesSearch}&page=1&per_page=20`)
 
       const data = (response.data.items);
       setRepositories(data);
-      setNewRepositoriesSearch('')
-      console.log(newRepositoriesSearch)
     } catch (error) {
       console.log(error)
     }
   }
+
 
   return (
     <>
