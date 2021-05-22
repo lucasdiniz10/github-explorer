@@ -1,7 +1,8 @@
 import './styles.scss'
 import goUserPageButton from "../../assets/goUserPageButton.svg"
+import { useRepositories } from '../../hooks/useRepositories';
 
-interface User {
+/* interface User {
   id: number,
   login: string,
   avatar_url: string,
@@ -19,13 +20,11 @@ interface Repositories {
   forks: number,
   openIssues: number,
   owner: User,
-}
+} */
 
-interface UsersListProps {
-  repositories: Repositories[];
-}
+export function RepositoriesSearch() {
+  const { repositories } = useRepositories();
 
-export function RepositoriesSearch({ repositories }: UsersListProps) {
   return (
     <section className="repos-container container">
       <ul>

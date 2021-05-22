@@ -1,5 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react"
-import { api } from "../services/api";
+import { createContext, ReactNode, useContext, useState } from "react";
 
 interface User {
   id: number,
@@ -25,25 +24,31 @@ interface RepositoriesProviderProps {
   children: ReactNode;
 }
 
-interface RepositoriesContextData {
+type RepositoriesContextData = {
   repositories: Repositories[],
+  setRepositoriesState: (state: Repositories[]) => void,
 }
 
 const RepositoriesContext = createContext<RepositoriesContextData>({} as RepositoriesContextData);
 
 
 export function RepositoriesProvider({ children }: RepositoriesProviderProps) {
+
   const [repositories, setRepositories] = useState<Repositories[]>([]);
 
-  // https://api.github.com/search/repositories?q={react}{&page,per_page,sort,order}
+  function setRepositoriesState(state: Repositories[]) {
+    setRepositories(state);
+  }
 
-  useEffect(() => {
-    api.get(`repositories?q=react&page=1&per_page=20`)
-      .then(response => setRepositories(response.data.items));
-  }, [])
+  console.log('repositories')
 
   return (
-    <RepositoriesContext.Provider value={{ repositories }}>
+    <RepositoriesContext.Provider
+      value={{
+        repositories,
+        setRepositoriesState,
+      }}
+    >
       {children}
     </RepositoriesContext.Provider>
   );

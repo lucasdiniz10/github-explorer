@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRepositories } from "../hooks/useRepositories";
 import { api } from "../services/api";
 
 import { Header } from "../components/Header/index";
@@ -6,44 +7,24 @@ import { RepositoriesSearch } from "../components/RepositoriesSearch/index";
 
 import '../styles/home.scss'
 
-
-interface User {
-  id: number,
-  login: string,
-  avatar_url: string,
-  name: string,
-  repos_url: string,
-}
-
-interface Repositories {
-  id: number,
-  name: string,
-  full_name: string,
-  description: string,
-  url: string,
-  stars: number,
-  forks: number,
-  openIssues: number,
-  owner: User,
-}
-
 export function Home() {
+  const { setRepositoriesState } = useRepositories();
+
   const [newRepositoriesSearch, setNewRepositoriesSearch] = useState('');
 
   // https://api.github.com/search/repositories?q={react}{&page,per_page,sort,order}
 
+  useEffect(() => {
+    api.get(`repositories?q=react&page=1&per_page=20`)
+      .then(response => setNewRepositoriesSearch(response.data.items));
+  }, [])
 
-  const handleCreateNewRepositoriesSearch = async () => {
-    try {
-      const response = await api.get(`repositories?q=${newRepositoriesSearch}&page=1&per_page=20`)
+  async function handleCreateNewRepositoriesSearch() {
+    const response = await api.get(`repositories?q=${newRepositoriesSearch}&page=1&per_page=20`)
 
-      const data = (response.data.items);
-      setRepositories(data);
-    } catch (error) {
-      console.log(error)
-    }
+    const data = (response.data.items);
+    setRepositoriesState(data);
   }
-
 
   return (
     <>
@@ -69,9 +50,7 @@ export function Home() {
           </button>
         </form>
         <div className="repositories-container">
-          <RepositoriesSearch
-            repositories={repositories}
-          />
+          <RepositoriesSearch />
         </div>
       </div>
     </>
