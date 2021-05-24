@@ -3,7 +3,7 @@
 .home-container {
   margin: 0 auto;
 
-  #home-title{
+  #home-title {
     color: $title-color;
     margin-bottom: 2rem;
   }
@@ -19,7 +19,7 @@
       padding: 0 5px 0 10px;
       color: $text-color;
     }
-    
+
     input:focus {
       outline: 2px solid $button-color;
       outline-offset: -2px;
@@ -35,7 +35,7 @@
       border: none;
       border-radius: 5px;
       overflow: hidden;
-      font-family: 'Roboto';
+      font-family: "Roboto";
       font-weight: 700;
       font-size: 0.9rem;
     }
@@ -44,13 +44,13 @@
       color: #fff;
       background-color: $button-color;
       outline: none;
+
+      &:hover {
+        background-color: #02bd56;
+        transition: background-color 0.1s ease;
+      }
     }
 
-    button:hover {
-      background-color: #02bd56;
-      transition: background-color 0.1s ease;
-    }
-    
     button:active {
       background-color: #4144ff;
     }

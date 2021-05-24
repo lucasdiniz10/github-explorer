@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { RepositoryItem } from "../RepositoryItem/index"
 
 import './styles.scss';
 
@@ -20,15 +19,18 @@ export function RepositoryList() {
 
   return (
     <section className="repository-list container">
-      <h1>Lista de Repositórios</h1>
-
       <ul>
+
         {repositories.map(repository => {
           return (
-            <RepositoryItem
-              key={repository.name}
-              repository={repository}
-            />
+            <li>
+              <strong>{repository.name}</strong>
+              <p>{repository.description}</p>
+
+              <a href={repository.html_url}>
+                Acessar repositório
+              </a>
+            </li>
           )
         })}
       </ul>
