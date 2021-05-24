@@ -12,9 +12,9 @@ export function Header() {
 
   // define a classe do botão dependendo da página da atual da aplicação
   useEffect(() => {
-    const isUserPage = match.path === '/user';
+    const isRepositoryPage = match.path === '/repository';
 
-    isUserPage ? setBackButtonClass("back-page-button") : setBackButtonClass("back-page-button invisible");
+    isRepositoryPage ? setBackButtonClass("back-page-button") : setBackButtonClass("back-page-button invisible");
 
   }, [match.path])
 

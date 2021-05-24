@@ -1,6 +1,7 @@
 import './styles.scss'
 import goUserPageButton from "../../assets/goUserPageButton.svg"
 import { useRepositories } from '../../hooks/useRepositories';
+import { Link } from 'react-router-dom';
 
 
 export function RepositoriesSearch() {
@@ -25,13 +26,15 @@ export function RepositoriesSearch() {
                 </a>
                 <p>{repository.description}</p>
               </div>
-              <button type="button" className="go-to-user-page-button"
-                onClick={() => handleShowRepositoryPage(repository.id)}>
-                <img
-                  src={goUserPageButton}
-                  alt="ir para repositórios do usuário"
-                />
-              </button>
+              <Link to={`repository/${repository.full_name}`}>
+                <button type="button" className="go-to-user-page-button"
+                  onClick={() => handleShowRepositoryPage(repository.id)}>
+                  <img
+                    src={goUserPageButton}
+                    alt="ir para repositórios do usuário"
+                  />
+                </button>
+              </Link>
             </li>
           )
         })}
