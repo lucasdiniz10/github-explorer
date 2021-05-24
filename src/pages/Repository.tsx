@@ -1,7 +1,7 @@
 import { Header } from '../components/Header';
 import '../styles/user.scss';
 
-export function User() {
+export function Repository() {
   return (
     <>
       <Header />

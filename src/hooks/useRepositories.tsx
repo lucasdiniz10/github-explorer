@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { api } from "../services/api";
 
 interface User {
   id: number,
@@ -40,7 +41,13 @@ export function RepositoriesProvider({ children }: RepositoriesProviderProps) {
     setRepositories(state);
   }
 
-  console.log('repositories')
+  useEffect(() => {
+    api.get(`repositories?q=react&page=1&per_page=20`)
+      .then(response => setRepositories(response.data.items))
+  }, [])
+
+
+  // console.log('repositories')
 
   return (
     <RepositoriesContext.Provider

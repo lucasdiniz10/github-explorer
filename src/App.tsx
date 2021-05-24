@@ -1,5 +1,6 @@
 import { Home } from "./pages/Home";
-import { User } from "./pages/User";
+import { Repository } from "./pages/Repository";
+import { RepositoriesProvider } from "./hooks/useRepositories"
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,16 +11,21 @@ import './styles/global.scss'
 export function App() {
   return (
     <>
-      <Router>
-        <Switch>
-          <Route path="/user">
-            <User />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </Router>
+      <RepositoriesProvider>
+        <Router>
+          <Switch>
+
+            <Route path="/repository">
+              <Repository />
+            </Route>
+
+            <Route path="/">
+              <Home />
+            </Route>
+
+          </Switch>
+        </Router>
+      </RepositoriesProvider>
     </>
   );
 }

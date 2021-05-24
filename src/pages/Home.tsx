@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRepositories } from "../hooks/useRepositories";
 import { api } from "../services/api";
 
@@ -13,11 +13,6 @@ export function Home() {
   const [newRepositoriesSearch, setNewRepositoriesSearch] = useState('');
 
   // https://api.github.com/search/repositories?q={react}{&page,per_page,sort,order}
-
-  useEffect(() => {
-    api.get(`repositories?q=react&page=1&per_page=20`)
-      .then(response => setNewRepositoriesSearch(response.data.items));
-  }, [])
 
   async function handleCreateNewRepositoriesSearch() {
     const response = await api.get(`repositories?q=${newRepositoriesSearch}&page=1&per_page=20`)
@@ -43,8 +38,8 @@ export function Home() {
           />
           <button
             className="form-item"
-            type="submit"
-            onSubmit={handleCreateNewRepositoriesSearch}
+            type="button"
+            onClick={handleCreateNewRepositoriesSearch}
           >
             Pesquisar
           </button>
