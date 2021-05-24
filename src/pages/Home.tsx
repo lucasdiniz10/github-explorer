@@ -12,8 +12,6 @@ export function Home() {
 
   const [newRepositoriesSearch, setNewRepositoriesSearch] = useState('');
 
-  // https://api.github.com/search/repositories?q={react}{&page,per_page,sort,order}
-
   async function handleCreateNewRepositoriesSearch() {
     const response = await api.get(`repositories?q=${newRepositoriesSearch}&page=1&per_page=20`)
 

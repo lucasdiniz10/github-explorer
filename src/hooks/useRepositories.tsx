@@ -28,32 +28,41 @@ interface RepositoriesProviderProps {
 type RepositoriesContextData = {
   repositories: Repositories[],
   setRepositoriesState: (state: Repositories[]) => void,
+  pickedRepository: number,
+  setPickedRepositoryState: (id: number) => void;
 }
 
 const RepositoriesContext = createContext<RepositoriesContextData>({} as RepositoriesContextData);
 
 
 export function RepositoriesProvider({ children }: RepositoriesProviderProps) {
-
   const [repositories, setRepositories] = useState<Repositories[]>([]);
 
   function setRepositoriesState(state: Repositories[]) {
     setRepositories(state);
   }
 
+  // Recebe o id do repositório escolhido
+  const [pickedRepository, setPickedRepository] = useState(0);
+
+  function setPickedRepositoryState(id: number) {
+    setPickedRepository(id);
+  }
+
+  // https://api.github.com/search/repositories?q={react}{&page,per_page,sort,order}
+  // Busca inicial
   useEffect(() => {
     api.get(`repositories?q=react&page=1&per_page=20`)
       .then(response => setRepositories(response.data.items))
   }, [])
-
-
-  // console.log('repositories')
 
   return (
     <RepositoriesContext.Provider
       value={{
         repositories,
         setRepositoriesState,
+        pickedRepository,
+        setPickedRepositoryState,
       }}
     >
       {children}

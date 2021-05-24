@@ -6,7 +6,7 @@ export function Repository() {
     <>
       <Header />
       <div className="user-container container">
-        <h1>User Page</h1>
+        <h1>Repository Page</h1>
       </div>
     </>
   );

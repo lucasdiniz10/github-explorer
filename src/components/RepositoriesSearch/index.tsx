@@ -2,28 +2,13 @@ import './styles.scss'
 import goUserPageButton from "../../assets/goUserPageButton.svg"
 import { useRepositories } from '../../hooks/useRepositories';
 
-/* interface User {
-  id: number,
-  login: string,
-  avatar_url: string,
-  name: string,
-  repos_url: string,
-}
-
-interface Repositories {
-  id: number,
-  name: string,
-  full_name: string,
-  description: string,
-  url: string,
-  stars: number,
-  forks: number,
-  openIssues: number,
-  owner: User,
-} */
 
 export function RepositoriesSearch() {
-  const { repositories } = useRepositories();
+  const { repositories, setPickedRepositoryState } = useRepositories();
+
+  function handleShowRepositoryPage(id: number) {
+    setPickedRepositoryState(id);
+  }
 
   return (
     <section className="repos-container container">
@@ -40,7 +25,8 @@ export function RepositoriesSearch() {
                 </a>
                 <p>{repository.description}</p>
               </div>
-              <button type="button" className="go-to-user-page-button">
+              <button type="button" className="go-to-user-page-button"
+                onClick={() => handleShowRepositoryPage(repository.id)}>
                 <img
                   src={goUserPageButton}
                   alt="ir para repositórios do usuário"
