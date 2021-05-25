@@ -14,7 +14,9 @@ export function Repository() {
           <div className="repository-info-container">
             <img className="profile-photo" src={pickedRepository.owner.avatar_url} alt="Foto do Perfil" />
             <div className="text">
-              <h1>{pickedRepository.full_name}</h1>
+              <a rel="noreferrer" target="_blank" href={pickedRepository.html_url}>
+                <h1>{pickedRepository.full_name}</h1>
+              </a>
               <p>{pickedRepository.description}</p>
             </div>
           </div>

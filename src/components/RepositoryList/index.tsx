@@ -8,7 +8,7 @@ export function RepositoryList() {
 
   useEffect(() => {
     getOthersRepositories()
-  })
+  }, [getOthersRepositories])
 
   return (
     <section className="repository-list container">
