@@ -27,9 +27,12 @@
         h1 {
           font-weight: 700;
           color: $title-color;
+          padding-bottom: 1rem;
         }
         p {
+          line-height: 1.4rem;
           color: $text-color;
+          text-align: center;
         }
       }
     }
