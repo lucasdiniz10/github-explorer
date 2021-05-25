@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { api } from "../services/api";
 
@@ -15,9 +16,10 @@ interface Repositories {
   full_name: string,
   description: string,
   url: string,
-  stars: number,
+  html_url?: string,
+  watchers: number,
   forks: number,
-  openIssues: number,
+  open_issues: number,
   owner: User,
 }
 
@@ -28,8 +30,10 @@ interface RepositoriesProviderProps {
 type RepositoriesContextData = {
   repositories: Repositories[],
   setRepositoriesState: (state: Repositories[]) => void,
-  pickedRepository: number,
-  setPickedRepositoryState: (id: number) => void;
+  pickedRepository: Repositories,
+  setPickedRepositoryState: (repo: Repositories) => void,
+  otherRepositories: Repositories[],
+  getOthersRepositories: () => void,
 }
 
 const RepositoriesContext = createContext<RepositoriesContextData>({} as RepositoriesContextData);
@@ -37,16 +41,21 @@ const RepositoriesContext = createContext<RepositoriesContextData>({} as Reposit
 
 export function RepositoriesProvider({ children }: RepositoriesProviderProps) {
   const [repositories, setRepositories] = useState<Repositories[]>([]);
+  const [pickedRepository, setPickedRepository] = useState({} as Repositories);
+
+  const [otherRepositories, setOtherRepositories] = useState<Repositories[]>([]);
 
   function setRepositoriesState(state: Repositories[]) {
     setRepositories(state);
   }
 
-  // Recebe o id do repositório escolhido
-  const [pickedRepository, setPickedRepository] = useState(0);
+  function setPickedRepositoryState(repo: Repositories) {
+    setPickedRepository(repo);
+  }
 
-  function setPickedRepositoryState(id: number) {
-    setPickedRepository(id);
+  async function getOthersRepositories() {
+    await axios.get(pickedRepository.owner.repos_url)
+      .then(response => (setOtherRepositories(response.data)))
   }
 
   // https://api.github.com/search/repositories?q={react}{&page,per_page,sort,order}
@@ -63,6 +72,8 @@ export function RepositoriesProvider({ children }: RepositoriesProviderProps) {
         setRepositoriesState,
         pickedRepository,
         setPickedRepositoryState,
+        otherRepositories,
+        getOthersRepositories
       }}
     >
       {children}

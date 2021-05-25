@@ -1,33 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useRepositories } from "../../hooks/useRepositories";
 
 import './styles.scss';
 
-interface Repository {
-  name: string,
-  description: string,
-  html_url: string,
-}
-
 export function RepositoryList() {
-  const [repositories, setRepositories] = useState<Repository[]>([])
+  const { getOthersRepositories, otherRepositories } = useRepositories();
 
   useEffect(() => {
-    fetch('https://api.github.com/users/lucasdiniz10/repos')
-      .then(response => response.json())
-      .then(data => setRepositories(data))
-  }, [])
+    getOthersRepositories()
+  })
 
   return (
     <section className="repository-list container">
       <ul>
 
-        {repositories.map(repository => {
+        {otherRepositories.map(repository => {
           return (
-            <li>
+            <li key={repository.name}>
               <strong>{repository.name}</strong>
               <p>{repository.description}</p>
 
-              <a href={repository.html_url}>
+              <a rel="noreferrer" target="_blank" href={repository.html_url}>
                 Acessar repositório
               </a>
             </li>

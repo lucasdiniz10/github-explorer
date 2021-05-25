@@ -1,18 +1,21 @@
 import { Header } from '../components/Header';
 import { RepositoryList } from '../components/RepositoryList';
+import { useRepositories } from '../hooks/useRepositories';
 import '../styles/repository.scss';
 
 export function Repository() {
+  const { pickedRepository } = useRepositories();
+
   return (
     <>
       <Header />
       <div className="repository-container container">
         <header>
-          <div className="title">
-            <img className="profile-photo" src="https://avatars.githubusercontent.com/u/47890460?v=4" alt="Foto do Perfil" />
+          <div className="repository-info-container">
+            <img className="profile-photo" src={pickedRepository.owner.avatar_url} alt="Foto do Perfil" />
             <div className="text">
-              <h1>lucasdiniz10/giftr</h1>
-              <p>Um projeto Legal</p>
+              <h1>{pickedRepository.full_name}</h1>
+              <p>{pickedRepository.description}</p>
             </div>
           </div>
           <div className="info">
@@ -20,21 +23,21 @@ export function Repository() {
 
               <li>
                 <h3>
-                  <span>1808</span>
+                  <span>{pickedRepository.watchers}</span>
                 </h3>
                 <p>Stars</p>
               </li>
 
               <li>
                 <h3>
-                  <span>1808</span>
+                  <span>{pickedRepository.forks}</span>
                 </h3>
                 <p>Forks</p>
               </li>
 
               <li>
                 <h3>
-                  <span>1808</span>
+                  <span>{pickedRepository.open_issues}</span>
                 </h3>
                 <p>Issues Abertas</p>
               </li>

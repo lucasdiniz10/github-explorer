@@ -3,12 +3,32 @@ import goUserPageButton from "../../assets/goUserPageButton.svg"
 import { useRepositories } from '../../hooks/useRepositories';
 import { Link } from 'react-router-dom';
 
+interface User {
+  id: number,
+  login: string,
+  avatar_url: string,
+  name: string,
+  repos_url: string,
+}
+
+interface Repositories {
+  id: number,
+  name: string,
+  full_name: string,
+  description: string,
+  url: string,
+  html_url?: string,
+  watchers: number,
+  forks: number,
+  open_issues: number,
+  owner: User,
+}
 
 export function RepositoriesSearch() {
   const { repositories, setPickedRepositoryState } = useRepositories();
 
-  function handleShowRepositoryPage(id: number) {
-    setPickedRepositoryState(id);
+  function handleShowRepositoryPage(repo: Repositories) {
+    setPickedRepositoryState(repo);
   }
 
   return (
@@ -26,9 +46,9 @@ export function RepositoriesSearch() {
                 </a>
                 <p>{repository.description}</p>
               </div>
-              <Link to={`repository/${repository.full_name}`}>
+              <Link to={`repository`}>
                 <button type="button" className="go-to-user-page-button"
-                  onClick={() => handleShowRepositoryPage(repository.id)}>
+                  onClick={() => handleShowRepositoryPage(repository)}>
                   <img
                     src={goUserPageButton}
                     alt="ir para repositórios do usuário"
