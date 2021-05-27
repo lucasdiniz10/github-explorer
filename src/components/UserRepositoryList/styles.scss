@@ -35,6 +35,10 @@ section.repository-list {
       margin-top: 1.2rem;
     }
 
+    &:last-child {
+      margin-bottom: 1.2rem;
+    }
+
     a {
       display: inline-block;
       text-decoration: none;
@@ -55,8 +59,15 @@ section.repository-list {
     button {
       font-size: 0;
       border: transparent;
+      border-radius: 0.4rem;
+
       img {
         background: #fff;
+        border-radius: 0.4rem;
+
+        &:hover {
+          background-color: $button-color;
+        }
       }
     }
   }

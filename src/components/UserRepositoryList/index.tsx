@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useRepositories } from "../../hooks/useRepositories";
 
 import goUserPageButton from "../../assets/goUserPageButton.svg"
@@ -21,14 +20,16 @@ export function UserRepositoryList() {
           return (
             <li key={repository.name}>
               <div className="info-container">
-                <Link rel="noreferrer" target='_blank' to={`${repository.html_url}`}>
+                <a rel="noreferrer" target='_blank' href={repository.html_url}>
                   <strong>{repository.name}</strong>
-                </Link>
+                </a>
                 <p>{repository.owner.login}</p>
               </div>
-              <button>
-                <img src={goUserPageButton} alt="Ir para página" />
-              </button>
+              <a rel="noreferrer" target='_blank' href={repository.html_url}>
+                <button type="button">
+                  <img src={goUserPageButton} alt="Ir para página" />
+                </button>
+              </a>
             </li>
           )
         })}
