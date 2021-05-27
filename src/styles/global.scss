@@ -12,6 +12,16 @@ $active-button-color: #0059ff;
   box-sizing: border-box;
 }
 
+html {
+  @media (max-width: 1080px) {
+    font-size: 93.75%;
+  }
+
+  @media (max-width: 720px) {
+    font-size: 87.5%;
+  }
+}
+
 body {
   font: 16px "Roboto", Arial, sans-serif;
   color: #121214;
@@ -20,6 +30,7 @@ body {
   background-repeat: no-repeat;
   background-position: left 64% top -40px;
   margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
