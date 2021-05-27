@@ -1,5 +1,5 @@
 import { Header } from '../components/Header';
-import { RepositoryList } from '../components/RepositoryList';
+import { UserRepositoryList } from '../components/UserRepositoryList/index';
 import { useRepositories } from '../hooks/useRepositories';
 import '../styles/repository.scss';
 
@@ -49,7 +49,7 @@ export function Repository() {
         </header>
 
         <section>
-          <RepositoryList />
+          <UserRepositoryList />
         </section>
       </div>
     </>

@@ -3,7 +3,7 @@ import { useRepositories } from "../../hooks/useRepositories";
 
 import './styles.scss';
 
-export function RepositoryList() {
+export function UserRepositoryList() {
   const { getOthersRepositories, otherRepositories } = useRepositories();
 
   useEffect(() => {
