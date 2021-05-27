@@ -1,3 +1,5 @@
+@import "../../styles/global.scss";
+
 section.repository-list {
   margin: 0 auto;
 
@@ -10,30 +12,52 @@ section.repository-list {
   }
 
   li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     background: #fff;
     padding: 15px 1.6rem;
+    border-radius: 0.4rem;
+    border: 2px solid transparent;
 
+    overflow: hidden;
 
+    &:hover {
+      border: 2px solid $button-color;
+    }
     /*
     & -> referencia o próprio elemento.
     & + li -> Toda `li` que tiver outro `li` antes dela.
     Ou seja, não se aplica para o primeiro `li`.
     */
     & + li {
-      margin-top: 20px;
-    }
-
-    p {
-      font-size: 14px;
-      color: #444;
-      margin-top: 8px;
+      margin-top: 1.2rem;
     }
 
     a {
       display: inline-block;
-      margin-top: 16px;
       text-decoration: none;
-      color: #8257e6;
+      color: $title-color;
+
+      &:hover {
+        text-decoration: underline;
+        color: $button-color;
+      }
+    }
+
+    p {
+      font-size: 14px;
+      color: $text-color;
+      margin-top: 8px;
+    }
+
+    button {
+      font-size: 0;
+      border: transparent;
+      img {
+        background: #fff;
+      }
     }
   }
 }
