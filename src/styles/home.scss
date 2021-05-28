@@ -11,13 +11,12 @@
   form {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    row-gap: 1rem;
     margin-bottom: 4rem;
 
     input {
       padding: 0 5px 0 10px;
       color: $text-color;
+      margin-bottom: 1rem;
     }
 
     input:focus {
@@ -33,7 +32,7 @@
     .form-item {
       height: 3rem;
       border: none;
-      border-radius: 5px;
+      border-radius: 0.4rem;
       overflow: hidden;
       font-family: "Roboto";
       font-weight: 700;
@@ -43,7 +42,7 @@
     button {
       color: #fff;
       background-color: $button-color;
-      outline: none;
+      outline: transparent;
 
       &:hover {
         background-color: #02bd56;
@@ -53,6 +52,37 @@
 
     button:active {
       background-color: #4144ff;
+    }
+  }
+
+  @media (min-width: 768px) {
+    #home-title {
+      font-size: 3rem;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+
+      .form-item {
+        height: 4.5rem;
+      }
+
+      input::placeholder {
+        font-weight: 400;
+        font-size: 1.25rem;
+      }
+
+      #home-input {
+        border-radius: 0.4rem 0 0 0.4rem;
+      }
+
+      #search-button {
+        border-radius: 0 0.4rem 0.4rem 0;
+
+        font-weight: 400;
+        font-size: 1.25rem;
+      }
     }
   }
 }

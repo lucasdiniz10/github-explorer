@@ -29,6 +29,7 @@ export function Home() {
         <form className="search-user-container">
           <input
             className="form-item"
+            id="home-input"
             type="text"
             placeholder="Digite aqui"
             onChange={(e) => setNewRepositoriesSearch(e.target.value)}
@@ -36,6 +37,7 @@ export function Home() {
           />
           <button
             className="form-item"
+            id="search-button"
             type="button"
             onClick={handleCreateNewRepositoriesSearch}
           >
