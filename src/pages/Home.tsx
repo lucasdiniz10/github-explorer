@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useRepositories } from "../hooks/useRepositories";
 import { api } from "../services/api";
 
@@ -12,11 +12,19 @@ export function Home() {
 
   const [newRepositoriesSearch, setNewRepositoriesSearch] = useState('');
 
-  async function handleCreateNewRepositoriesSearch() {
-    const response = await api.get(`repositories?q=${newRepositoriesSearch}&page=1&per_page=20`)
+  async function handleCreateNewRepositoriesSearch(event: FormEvent) {
+    event.preventDefault();
 
-    const data = (response.data.items);
-    setRepositoriesState(data);
+    const emptyTextField = newRepositoriesSearch === '';
+
+    if (emptyTextField) {
+      alert('Preencha o campo para fazer uma busca válida!');
+    } else {
+      const response = await api.get(`repositories?q=${newRepositoriesSearch}&page=1&per_page=20`)
+
+      const data = (response.data.items);
+      setRepositoriesState(data);
+    }
   }
 
   return (
@@ -26,20 +34,22 @@ export function Home() {
         <h1 id="home-title">
           Explore repositórios<br></br>no Github.
         </h1>
-        <form className="search-user-container">
+        <form
+          className="search-user-container"
+          onSubmit={handleCreateNewRepositoriesSearch}
+        >
           <input
             className="form-item"
             id="home-input"
             type="text"
             placeholder="Digite aqui"
-            onChange={(e) => setNewRepositoriesSearch(e.target.value)}
+            onChange={event => setNewRepositoriesSearch(event.target.value)}
             value={newRepositoriesSearch}
           />
           <button
             className="form-item"
             id="search-button"
-            type="button"
-            onClick={handleCreateNewRepositoriesSearch}
+            type="submit"
           >
             Pesquisar
           </button>
