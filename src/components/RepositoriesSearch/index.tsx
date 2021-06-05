@@ -37,15 +37,18 @@ export function RepositoriesSearch() {
         {repositories.map(repository => {
           return (
             <li key={repository.id}>
-              <a href={repository.owner.repos_url}>
-                <img src={repository.owner.avatar_url} alt="Foto perfil" className="profile-photo" />
-              </a>
-              <div className="text-content-container">
+              <div className="content-container">
                 <a href={repository.owner.repos_url}>
-                  {repository.full_name}
+                  <img src={repository.owner.avatar_url} alt="Foto perfil" className="profile-photo" />
                 </a>
-                <p>{repository.description}</p>
+                <div className="text-content-container">
+                  <a href={repository.owner.repos_url}>
+                    {repository.full_name}
+                  </a>
+                  <p>{repository.description}</p>
+                </div>
               </div>
+
               <Link to={`repository`}>
                 <button type="button" className="go-to-user-page-button"
                   onClick={() => handleShowRepositoryPage(repository)}>

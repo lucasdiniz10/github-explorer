@@ -3,29 +3,37 @@
 .repos-container {
   li {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
+
     width: 100%;
     padding: 1.2rem;
-    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+
     overflow: hidden;
     list-style: none;
+
     background: #fff;
     border: 2px solid transparent;
     border-radius: 0.4rem;
     transition: background-color 1s ease;
-    margin-bottom: 1.2rem;
 
     &:hover {
       border: 2px solid $button-color;
     }
 
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     a {
       color: $title-color;
       text-decoration: none;
-      font-size: 1.4rem;
     }
+
     p {
       color: $text-color;
       font-size: 0.8rem;
@@ -83,6 +91,27 @@
 
     &:active {
       background-color: $active-button-color;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .repos-container {
+    li {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+
+      .content-container {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+
+    .profile-photo {
+      height: 5rem;
+      margin-bottom: 0;
     }
   }
 }
