@@ -11,18 +11,19 @@
   form {
     display: flex;
     flex-direction: column;
+
     margin-bottom: 4rem;
 
     input {
       padding: 0 5px 0 10px;
-      color: $text-color;
       margin-bottom: 1rem;
+
+      font-weight: 400;
+      color: $text-color;
     }
 
     input:focus {
-      outline: 2px solid $button-color;
-      outline-offset: -2px;
-      color: $text-color;
+      outline: auto;
     }
 
     input::placeholder {
@@ -31,18 +32,22 @@
 
     .form-item {
       height: 3rem;
+      overflow: hidden;
+
       border: none;
       border-radius: 0.4rem;
-      overflow: hidden;
+
       font-family: "Roboto";
-      font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 1rem;
     }
 
     button {
       color: #fff;
       background-color: $button-color;
       outline: transparent;
+
+      font-weight: 700;
+      letter-spacing: 0.2px;
 
       &:hover {
         background-color: #02bd56;
@@ -57,20 +62,29 @@
 
   @media (min-width: 768px) {
     #home-title {
-      font-size: 3rem;
+      font-size: 2.4rem;
     }
 
     form {
       display: grid;
       grid-template-columns: 2fr 1fr;
 
+      margin-bottom: 6rem;
+
       .form-item {
-        height: 4.5rem;
+        height: 3.4rem;
       }
 
-      input::placeholder {
+      input {
+        padding: 0 1rem;
         font-weight: 400;
-        font-size: 1.25rem;
+        font-size: 1.2rem;
+
+        margin-bottom: 0;
+
+        &::placeholder {
+          font-size: 1.2rem;
+        }
       }
 
       #home-input {
@@ -78,10 +92,10 @@
       }
 
       #search-button {
+        margin-left: 1px;
         border-radius: 0 0.4rem 0.4rem 0;
 
-        font-weight: 400;
-        font-size: 1.25rem;
+        font-size: 1.2rem;
       }
     }
   }
