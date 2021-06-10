@@ -12,7 +12,9 @@ Em construção. :construction:
 - [React](https://reactjs.org/)
 - [Sass](https://sass-lang.com/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [Webpack](https://webpack.js.org/)
+- [Axios](https://axios-http.com/)
+- [React Hooks](https://reactjs.org/docs/hooks-reference.html)
+- [React Context API](https://reactjs.org/docs/context.html)
 
 
 # License
