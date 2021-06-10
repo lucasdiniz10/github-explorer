@@ -1,9 +1,11 @@
 import { FormEvent, useState } from "react";
-import { useRepositories } from "../hooks/useRepositories";
-import { api } from "../services/api";
 
+import { useRepositories } from "../hooks/useRepositories";
 import { Header } from "../components/Header/index";
 import { RepositoriesSearch } from "../components/RepositoriesSearch/index";
+
+import { api } from "../services/api";
+import { toast } from "react-toastify";
 
 import '../styles/home.scss'
 
@@ -18,12 +20,14 @@ export function Home() {
     const emptyTextField = newRepositoriesSearch === '';
 
     if (emptyTextField) {
-      alert('Preencha o campo para fazer uma busca válida!');
+      toast.error('Preencha o campo para fazer uma busca válida!');
     } else {
       const response = await api.get(`repositories?q=${newRepositoriesSearch}&page=1&per_page=20`)
 
       const data = (response.data.items);
       setRepositoriesState(data);
+
+      setNewRepositoriesSearch('');
     }
   }
 

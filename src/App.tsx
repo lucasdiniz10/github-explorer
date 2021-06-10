@@ -6,7 +6,10 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import './styles/global.scss'
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+import './styles/global.scss';
 
 export function App() {
   return (
@@ -25,6 +28,7 @@ export function App() {
 
           </Switch>
         </Router>
+        <ToastContainer autoClose={4000} />
       </RepositoriesProvider>
     </>
   );
