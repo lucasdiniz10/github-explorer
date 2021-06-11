@@ -38,25 +38,28 @@ export function RepositoriesSearch() {
           return (
             <li key={repository.id}>
               <div className="content-container">
-                <a href={repository.owner.repos_url}>
+                <Link
+                  to={`repository`}
+                  onClick={() => handleShowRepositoryPage(repository)}>
                   <img src={repository.owner.avatar_url} alt="Foto perfil" className="profile-photo" />
-                </a>
+                </Link>
                 <div className="text-content-container">
-                  <a href={repository.owner.repos_url}>
+                  <Link
+                    to={`repository`}
+                    onClick={() => handleShowRepositoryPage(repository)}>
                     {repository.full_name}
-                  </a>
+                  </Link>
                   <p>{repository.description}</p>
                 </div>
               </div>
 
-              <Link to={`repository`}>
-                <button type="button" className="go-to-user-page-button"
-                  onClick={() => handleShowRepositoryPage(repository)}>
-                  <img
-                    src={goUserPageButton}
-                    alt="ir para repositórios do usuário"
-                  />
-                </button>
+              <Link to={`repository`}
+                className="go-to-user-page-button"
+                onClick={() => handleShowRepositoryPage(repository)}>
+                <img
+                  src={goUserPageButton}
+                  alt="ir para repositórios do usuário"
+                />
               </Link>
             </li>
           )
