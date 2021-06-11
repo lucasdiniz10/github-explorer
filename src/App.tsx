@@ -1,12 +1,14 @@
 import { Home } from "./pages/Home";
 import { Repository } from "./pages/Repository";
 import { RepositoriesProvider } from "./hooks/useRepositories"
+
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
+import { ScrollToTop } from "./utils/ScrolltoTop";
 
 import 'react-toastify/dist/ReactToastify.css';
 import './styles/global.scss';
@@ -16,6 +18,7 @@ export function App() {
     <>
       <RepositoriesProvider>
         <Router>
+          <ScrollToTop />
           <Switch>
 
             <Route path="/repository">
