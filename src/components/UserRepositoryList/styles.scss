@@ -17,14 +17,15 @@ section.repository-list {
     align-items: center;
 
     background: #fff;
-    padding: 15px 1.6rem;
+    padding: 1rem 1.6rem;
     border-radius: 0.4rem;
-    border: 2px solid transparent;
 
-    overflow: hidden;
+    overflow: auto;
+
+    transition: box-shadow 0.2s;
 
     &:hover {
-      border: 2px solid $button-color;
+      box-shadow: 0 0 0.6rem $hover-button-color;
     }
     /*
     & -> referencia o próprio elemento.
@@ -37,6 +38,10 @@ section.repository-list {
 
     &:last-child {
       margin-bottom: 1.2rem;
+    }
+
+    .info-container {
+      padding-right: 1rem;
     }
 
     a {
@@ -65,8 +70,10 @@ section.repository-list {
         background: #fff;
         border-radius: 0.4rem;
 
+        transition: filter 0.2s;
+
         &:hover {
-          background-color: $button-color;
+          filter: brightness(0.9);
         }
       }
     }
