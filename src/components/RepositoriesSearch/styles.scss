@@ -16,12 +16,11 @@
     list-style: none;
 
     background: #fff;
-    border: 2px solid transparent;
     border-radius: 0.4rem;
-    transition: background-color 1s ease;
+    transition: box-shadow 0.2s;
 
     &:hover {
-      border: 2px solid $button-color;
+      box-shadow: 0 0 0.6rem $hover-button-color;
     }
 
     .content-container {
@@ -85,8 +84,10 @@
       background: #fff;
       border-radius: 0.4rem;
 
+      transition: filter 0.2s;
+
       &:hover {
-        background-color: $button-color;
+        filter: brightness(0.9);
       }
     }
 
