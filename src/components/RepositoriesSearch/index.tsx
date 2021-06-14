@@ -39,13 +39,13 @@ export function RepositoriesSearch() {
             <li key={repository.id}>
               <div className="content-container">
                 <Link
-                  to={`repository`}
+                  to={`/repository?id=${repository.id}`}
                   onClick={() => handleShowRepositoryPage(repository)}>
                   <img src={repository.owner.avatar_url} alt="Foto perfil" className="profile-photo" />
                 </Link>
                 <div className="text-content-container">
                   <Link
-                    to={`repository`}
+                    to={`/repository?id=${repository.id}`}
                     onClick={() => handleShowRepositoryPage(repository)}>
                     {repository.full_name}
                   </Link>
@@ -53,7 +53,7 @@ export function RepositoriesSearch() {
                 </div>
               </div>
 
-              <Link to={`repository`}
+              <Link to={`/repository?id=${repository.id}`}
                 className="go-to-user-page-button"
                 onClick={() => handleShowRepositoryPage(repository)}>
                 <img

@@ -1,10 +1,18 @@
+import { useLocation } from 'react-router-dom';
 import { Header } from '../components/Header';
 import { UserRepositoryList } from '../components/UserRepositoryList/index';
 import { useRepositories } from '../hooks/useRepositories';
+
+/* import { useLocation } from "react-router-dom"; */
+
 import '../styles/repository.scss';
 
 export function Repository() {
   const { pickedRepository } = useRepositories();
+
+  const { search } = useLocation();
+  const searchParams = new URLSearchParams(search);
+  const name = searchParams.get('name')
 
   return (
     <>
