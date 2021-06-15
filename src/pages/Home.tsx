@@ -1,8 +1,9 @@
 import { FormEvent, useState } from "react";
 
-import { useRepositories } from "../hooks/useRepositories";
 import { Header } from "../components/Header/index";
 import { RepositoriesSearch } from "../components/RepositoriesSearch/index";
+
+import { useRepositories } from "../hooks/useRepositories";
 
 import { api } from "../services/api";
 import { toast } from "react-toastify";
@@ -12,6 +13,7 @@ import '../styles/home.scss'
 export function Home() {
   const { setRepositoriesState } = useRepositories();
 
+  // estado do input de busca
   const [newRepositoriesSearch, setNewRepositoriesSearch] = useState('');
 
   async function handleCreateNewRepositoriesSearch(event: FormEvent) {

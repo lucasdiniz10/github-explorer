@@ -1,6 +1,7 @@
-import axios from "axios";
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+
 import { api } from "../services/api";
+import axios from "axios";
 
 interface User {
   id: number,
@@ -47,11 +48,20 @@ export function RepositoriesProvider({ children }: RepositoriesProviderProps) {
 
   function setRepositoriesState(state: Repositories[]) {
     setRepositories(state);
+    localStorage.setItem('repository-searched', JSON.stringify(state));
   }
 
   function setPickedRepositoryState(repo: Repositories) {
     setPickedRepository(repo);
   }
+
+  useEffect(() => {
+    const localStoragePickedRepositoryData = localStorage.getItem('picked-repository');
+
+    if (localStoragePickedRepositoryData) {
+      setPickedRepository(JSON.parse(localStoragePickedRepositoryData))
+    }
+  }, [])
 
   async function getOthersRepositories() {
     await axios.get(pickedRepository.owner.repos_url)
@@ -59,10 +69,17 @@ export function RepositoriesProvider({ children }: RepositoriesProviderProps) {
   }
 
   // https://api.github.com/search/repositories?q={react}{&page,per_page,sort,order}
+
   // Busca inicial
   useEffect(() => {
-    api.get(`repositories?q=react&page=1&per_page=20`)
-      .then(response => setRepositories(response.data.items))
+    const localStorageRepositoryData = localStorage.getItem('repository-searched');
+
+    if (localStorageRepositoryData) {
+      setRepositories(JSON.parse(localStorageRepositoryData));
+    } else {
+      api.get(`repositories?q=react&page=1&per_page=20`)
+        .then(response => setRepositories(response.data.items));
+    }
   }, [])
 
   return (

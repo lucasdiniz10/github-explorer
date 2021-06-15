@@ -1,24 +1,17 @@
+import { useEffect } from 'react';
 import { Header } from '../components/Header';
 import { UserRepositoryList } from '../components/UserRepositoryList/index';
 import { useRepositories } from '../hooks/useRepositories';
 
-import { useLocation } from 'react-router-dom';
-
 import '../styles/repository.scss';
-import { useEffect } from 'react';
-import { api } from '../services/api';
 
 export function Repository() {
   const { pickedRepository } = useRepositories();
 
-  const { search } = useLocation();
-  const searchParams = new URLSearchParams(search);
-  const repositoryUserName = searchParams.get('user');
-  const repositoryName = searchParams.get('repos');
+  useEffect(() => {
+    localStorage.setItem('picked-repository', JSON.stringify(pickedRepository));
+  })
 
-  /*   useEffect(() => {
-      api.get()
-    }, []) */
 
   return (
     <>
