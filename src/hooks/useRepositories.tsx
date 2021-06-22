@@ -53,22 +53,13 @@ export function RepositoriesProvider({ children }: RepositoriesProviderProps) {
 
   function setPickedRepositoryState(repo: Repositories) {
     setPickedRepository(repo);
+    localStorage.setItem('picked-repository', JSON.stringify(repo));
   }
-
-  useEffect(() => {
-    const localStoragePickedRepositoryData = localStorage.getItem('picked-repository');
-
-    if (localStoragePickedRepositoryData) {
-      setPickedRepository(JSON.parse(localStoragePickedRepositoryData))
-    }
-  }, [])
 
   async function getOthersRepositories() {
     await axios.get(pickedRepository.owner.repos_url)
       .then(response => (setOtherRepositories(response.data)))
   }
-
-  // https://api.github.com/search/repositories?q={react}{&page,per_page,sort,order}
 
   // Busca inicial
   useEffect(() => {

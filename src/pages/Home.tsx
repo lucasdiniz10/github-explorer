@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 import { Header } from "../components/Header/index";
 import { RepositoriesSearch } from "../components/RepositoriesSearch/index";
@@ -32,6 +32,10 @@ export function Home() {
       setNewRepositoriesSearch('');
     }
   }
+
+  useEffect(() => {
+    document.title = 'Github Explorer | Home'
+  }, [])
 
   return (
     <>

@@ -6,12 +6,19 @@ import { useRepositories } from '../hooks/useRepositories';
 import '../styles/repository.scss';
 
 export function Repository() {
-  const { pickedRepository } = useRepositories();
+  const { pickedRepository, setPickedRepositoryState } = useRepositories();
 
   useEffect(() => {
-    localStorage.setItem('picked-repository', JSON.stringify(pickedRepository));
-  })
+    const localStoragePickedRepositoryData = localStorage.getItem('picked-repository');
 
+    if (localStoragePickedRepositoryData) {
+      setPickedRepositoryState(JSON.parse(localStoragePickedRepositoryData));
+    } else {
+      return;
+    }
+
+    document.title = `Github Explorer | ${pickedRepository.full_name}`
+  }, [])
 
   return (
     <>
