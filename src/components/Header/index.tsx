@@ -6,36 +6,48 @@ import { Link, useRouteMatch } from "react-router-dom"
 import { useEffect, useState } from "react";
 
 export function Header() {
-  const [backButtonClass, setBackButtonClass] = useState('');
-
   let match = useRouteMatch();
+
+  const [isRepositoryPage, setIsRepositoryPage] = useState(false);
 
   // define a classe do botão dependendo da página da atual da aplicação
   useEffect(() => {
-    const isRepositoryPage = match.path === '/repository';
+    const isRepoPage = match.path === '/repository';
 
-    isRepositoryPage ? setBackButtonClass("back-page-button") : setBackButtonClass("back-page-button invisible");
+    if (isRepoPage) {
+      setIsRepositoryPage(true);
+    }
 
   }, [match.path])
 
   return (
     <nav>
-      <div className="button-container container">
-        <Link to="/">
-          <button type="button" className="logo-button">
-            <img className="logo" src={logo} alt="Github Explorer" />
-          </button>
-        </Link>
-        <Link to="/">
-          <button type="button" className={backButtonClass}>
-            <img
-              className="back-page-button-image"
-              src={backPageButton}
-              alt="Volta página"
-            />
-          </button>
-        </Link>
-      </div>
+      {isRepositoryPage ? (
+        <div className="button-container container">
+          <Link to="/">
+            <button type="button" className="logo-button">
+              <img className="logo" src={logo} alt="Github Explorer" />
+            </button>
+          </Link>
+          <Link to="/">
+            <button type="button" className="back-page-button">
+              <img
+                className="back-page-button-image"
+                src={backPageButton}
+                alt="Volta página"
+              />
+            </button>
+          </Link>
+        </div>
+      ) : (
+        <div className="button-container container">
+          <Link to="/">
+            <button type="button" className="logo-button">
+              <img className="logo" src={logo} alt="Github Explorer" />
+            </button>
+          </Link>
+        </div>
+      )}
     </nav>
   );
 }
